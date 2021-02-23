@@ -1,3 +1,4 @@
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.google.gson.Gson;
 
 import javax.imageio.ImageIO;
@@ -54,7 +55,8 @@ public class Main extends JFrame {
 		searchButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked (MouseEvent event) {
-				fetchDeals(titleField.getText(), ((Store)storeSelect.getSelectedItem()).getStoreID(), (String)sortSelect.getSelectedItem());
+				fetchDeals(titleField.getText(), ((Store)storeSelect.getSelectedItem()).getStoreID(),
+					(String)sortSelect.getSelectedItem());
 			}
 		});
 
@@ -92,10 +94,11 @@ public class Main extends JFrame {
 					c.gridx = 1;
 					contentPane.add(new JLabel(deals[i].getTitle()), c);
 					c.gridx = 2;
-					contentPane.add(new JLabel((int)Float.parseFloat(deals[i].getSavings()) + "% off"), c);
+					contentPane.add(new JLabel((int)Float.parseFloat(deals[i].getSavings()) + "% Off"), c);
 					c.gridx = 3;
 					contentPane.add(new JLabel(String.format(
-						"<html><body><span style='text-decoration: line-through;'>$%s</span> $%s</body></html>", deals[i].getNormalPrice(), deals[i].getSalePrice())
+						"<html><body><span style='text-decoration: line-through;'>$%s</span> $%s</body></html>",
+						deals[i].getNormalPrice(), deals[i].getSalePrice())
 					), c);
 					JButton button = new JButton("See Deal");
 					c.gridx = 4;
@@ -135,6 +138,7 @@ public class Main extends JFrame {
 	}
 
 	public static void main (String[] args) throws IOException, InterruptedException {
+		FlatDarkLaf.install();
 		new Main();
 	}
 }
